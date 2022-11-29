@@ -38,7 +38,7 @@
             <label for="password">New Password</label>
             <input type="text" id="password" name="password">
             
-            <button>Submit</button>
+            <button>Create Account</button>
         </form>
     </body>
     </html>

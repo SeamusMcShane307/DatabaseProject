@@ -11,6 +11,21 @@
         <title>Content Page</title> 
         <meta charset="utf-8">
         <meta name="viewport" conent="width=device-width, initial-scale=1">
+
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+        <!-- jQuery UI library -->
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/themes/smoothness/jquery-ui.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
+
+        <script>
+        $(function() {
+            $("#Card_Name").autocomplete({
+                source: "fetchData.php",
+            });
+        });
+        </script>
     </head>
     <body>
         <style>
@@ -38,6 +53,8 @@
                 </tr>
                 <?php
                     $collection_id = $_GET['Collection_ID'];
+                    session_start();
+                    $_SESSION['Collection_ID'] = $collection_id;
                     echo $collection_id;
 
                     $conn = mysqli_connect("localhost", "root", "", "card_db");
@@ -66,6 +83,17 @@
                     $conn->close();
                 ?>
             </table>
+            <form method="post" action="addCard.php">
+                <div class="form-group">
+                    <label>Card Name:</label>
+                    <input type="text" id="Card_Name" name="Card_Name" placeholder="Start typing...">
+                </div>
+
+                <label for="Quantity">Quantity</label>
+                <input type="number" id="Quantity" name="Quantity" min="1" max="4">
+
+                <input type="submit" class"btn btn-primary" name="submit" value="Submit">
+            </form>
         </main>
     </body>
     </html>

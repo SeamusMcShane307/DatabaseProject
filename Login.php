@@ -36,7 +36,7 @@
             <label for="password">Password</label>
             <input type="text" id="password" name="password">
             
-            <button>Submit</button>
+            <button>Login</button>
         </form>
         <a href='NewAccount.php'>Make Account</a>
     </body>

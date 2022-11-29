@@ -53,35 +53,37 @@
             }
             $conn = mysqli_connect("localhost", "root", "", "card_db");
             
-            // Check connection
-            if ($conn->connect_error) {
-                die("Connection failed: " . $conn->connect_error);
-            }
-            if ($conn->query("SELECT Username FROM users WHERE Username = '$username';")->fetch_assoc()){ #&& $password == $conn->query("WITH password as($password) SELECT Password FROM users WHERE password IN (Password)")
-                if($conn->query("SELECT Password FROM users WHERE Password = '$password';")->fetch_assoc()){
+                // Check connection
+                if ($conn->connect_error) {
+                    die("Connection failed: " . $conn->connect_error);
+                }
+                if ($conn->query("SELECT Username,Password FROM users WHERE Username = '$username' AND Password = '$password';")->fetch_assoc()){ 
                     echo $username;
                 }
                 else{
-                    echo "php sucks";
+                    echo "An account with the entered username and password doesnt exist";
+                    #pop-up that lets the user know they entered an incorrect username or password
+                    #header("Refresh:0; url=http://localhost/Database Website/Login.php"); 
                 }
-            }
-            else{
-                echo "new login sucks";
-                #header("Refresh:0; url=http://localhost/Database Website/Login.php"); 
-            }
-            $sql = "SELECT * FROM collections WHERE Username = '$username'";
-            $result = $conn->query($sql);
-            if ($result->num_rows > 0) {
-            // output data of each row
-                while($row = $result->fetch_assoc()) {
-                    echo "<tr><td>" . $row["Collection_ID"]. 
-                    "</td><td>" . $row["Username"] . 
-                    "</td><td><a href='Content.php?Collection_ID=".$row['Collection_ID']."'>". $row["Name"]. "</td></tr>";
-                }
-                echo "</table>";
-            } else { echo "0 results"; }
+                $sql = "SELECT * FROM collections WHERE Username = '$username'";
+                $result = $conn->query($sql);
+                if ($result->num_rows > 0) {
+                // output data of each row
+                    while($row = $result->fetch_assoc()) {
+                        echo "<tr><td>" . $row["Collection_ID"]. 
+                        "</td><td>" . $row["Username"] . 
+                        "</td><td><a href='Content.php?Collection_ID=".$row['Collection_ID']."'>". $row["Name"]. "</td></tr>";
+                    }
+                    echo "</table>";
+                } else { echo "0 results"; }
             $conn->close();
             ?>
         </table>
+        <form action="newProcessor.php" method="post">
+            <label for="Name">Collection Name</label>
+            <input type="text" id="Name" name="Name">
+            
+            <button>Create Collection</button>
+        </form>
     </body>
 </html>
