@@ -16,13 +16,25 @@
         $sql = "SELECT ID FROM cards WHERE Name = '$cardName';";
         if ($conn->query($sql) -> fetch_assoc()) {
             $newCard = $conn->query($sql) -> fetch_assoc()['ID'];
-            $sql = "INSERT INTO contents (Collection_ID, Card_ID, Quantity)
+            $sql = "SELECT Collecction_ID,Card_ID FROM contents WHERE Collection_ID = '$collection_id' AND Card_ID = '$newCard';";
+            if($conn->query($sql) !== FALSE){
+                $sql = "INSERT INTO contents (Collection_ID, Card_ID, Quantity)
                     Values ('$collection_id', '$newCard', '$cardQuantity')";
-            if ($conn->query($sql) === TRUE) {
+                if ($conn->query($sql) === TRUE) {
                 header("Location:http://localhost/Database Website/Content.php?Collection_ID=$collection_id");
-            } 
-            else {
-                echo "Error: " . $sql . "<br>" . $conn->error;
+                } 
+                else {
+                    echo "Error: " . $sql . "<br>" . $conn->error;
+                }
+            }
+            else{
+                $sql = "UPDATE contents SET Quantity = '$cardQuantity' WHERE Collection_ID = '$collection_id' AND Card_ID = '$newCard';";
+                if ($conn->query($sql) === TRUE) {
+                    header("Location:http://localhost/Database Website/Content.php?Collection_ID=$collection_id");
+                    } 
+                    else {
+                        echo "Error: " . $sql . "<br>" . $conn->error;
+                    }
             }
         }
         else {
