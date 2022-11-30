@@ -1,7 +1,9 @@
 <?php
     session_start();
     $cardName = $_POST['Card_Name'];
-    echo $cardName;
+    if (strpos($cardName, "'") !== FALSE){
+        $cardName = addslashes($cardName);
+    }
     $cardQuantity = $_POST['Quantity'];
     $collection_id = $_SESSION['Collection_ID'];
     

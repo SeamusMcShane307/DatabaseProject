@@ -44,8 +44,11 @@
                 </tr>
                 <?php
                     $card_name = $_GET['Card_Name'];
-                    echo $card_name;
-
+                    $card_name = str_replace("@", "'",$card_name);
+                    if (strpos($card_name, "'") !== FALSE){
+                        $card_name = addslashes($card_name);
+                    }
+                    
                     $conn = mysqli_connect("localhost", "root", "", "card_db");
                     // Check connection
                     if ($conn->connect_error) {

@@ -71,10 +71,10 @@
                     // output data of each row
                         $row2 = $result2 -> fetch_assoc();
                         while($row = $result1->fetch_assoc()) {
-                            echo "<tr><td><a href='CardInfo.php?Card_Name=".$row2['Name']."'>" . $row2["Name"]. 
+                            echo "<tr><td><a href='CardInfo.php?Card_Name=".str_replace("'", "@",$row2['Name'])."'>" . $row2["Name"]. 
                             "</td><td>" . $row2["Cost"]. 
                             "</td><td>" . $row["Quantity"].
-                            "<td><a href='removeCard.php?Card_Name=".$row2['Name']."&Collection_ID=".$collection_id."'>" . "Remove".
+                            "<td><a href='removeCard.php?Card_Name=".str_replace("'", "@",$row2['Name'])."&Collection_ID=".$collection_id."'>" . "Remove".
                             "</td></tr>";
                             $row2 = $result2 -> fetch_assoc();
                         }

@@ -1,5 +1,9 @@
 <?php
     $cardName = $_GET['Card_Name'];
+    $cardName = str_replace("@", "'",$cardName);
+                    if (strpos($cardName, "'") !== FALSE){
+                        $cardName = addslashes($cardName);
+                    }
     $collection_id = $_GET['Collection_ID'];
 
     $conn = mysqli_connect("localhost", "root", "", "card_db");

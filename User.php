@@ -35,6 +35,7 @@
                 <th>Collection_Id</th>
                 <th>Username</th>
                 <th>Collection_Name</th>
+                <th></th>
             </tr>
             <?php
             session_start();
@@ -72,7 +73,9 @@
                     while($row = $result->fetch_assoc()) {
                         echo "<tr><td>" . $row["Collection_ID"]. 
                         "</td><td>" . $row["Username"] . 
-                        "</td><td><a href='Content.php?Collection_ID=".$row['Collection_ID']."'>". $row["Name"]. "</td></tr>";
+                        "</td><td><a href='Content.php?Collection_ID=".$row['Collection_ID']."'>". $row["Name"].
+                        "<td><a href='removeCollection.php?Collection_ID=". $row['Collection_ID']."'>" . "Remove" .
+                        "</td></tr>";
                     }
                     echo "</table>";
                 } else { echo "0 results"; }
