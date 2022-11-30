@@ -16,7 +16,7 @@
         $sql = "SELECT ID FROM cards WHERE Name = '$cardName';";
         if ($conn->query($sql) -> fetch_assoc()) {
             $newCard = $conn->query($sql) -> fetch_assoc()['ID'];
-            $sql = "SELECT Collecction_ID,Card_ID FROM contents WHERE Collection_ID = '$collection_id' AND Card_ID = '$newCard';";
+            $sql = "SELECT Collection_ID,Card_ID FROM contents WHERE Collection_ID = '$collection_id' AND Card_ID = '$newCard';";
             if($conn->query($sql) !== FALSE){
                 $sql = "INSERT INTO contents (Collection_ID, Card_ID, Quantity)
                     Values ('$collection_id', '$newCard', '$cardQuantity')";
