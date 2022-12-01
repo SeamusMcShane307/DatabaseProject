@@ -17,7 +17,7 @@
         if ($conn->query($sql) -> fetch_assoc()) {
             $newCard = $conn->query($sql) -> fetch_assoc()['ID'];
             $sql = "SELECT Collection_ID,Card_ID FROM contents WHERE Collection_ID = '$collection_id' AND Card_ID = '$newCard';";
-            if($conn->query($sql) !== FALSE){
+            if(mysqli_num_rows($conn->query($sql))  == 0){
                 $sql = "INSERT INTO contents (Collection_ID, Card_ID, Quantity)
                     Values ('$collection_id', '$newCard', '$cardQuantity')";
                 if ($conn->query($sql) === TRUE) {

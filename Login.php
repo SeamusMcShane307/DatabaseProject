@@ -17,15 +17,6 @@
               background-image: url('images/RagavanBackground.jpg');
             }
         </style>
-
-        <!-- Use the nav area to ass hyperlink to other pages within the website-->
-        <nav>
-            <ul>
-                <li><a href="Login.php">Login</a> </li>
-                <li><a href="User.php">User</a> </li>
-                <li><a href="Admin.php">Admin</a> </li>
-            </ul>
-        </nav>
         <main>
             <p>Please login to see your collections</p>
         </main>

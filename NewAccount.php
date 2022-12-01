@@ -23,8 +23,6 @@
         <nav>
             <ul>
                 <li><a href="Login.php">Login</a> </li>
-                <li><a href="User.php">User</a> </li>
-                <li><a href="Admin.php">Admin</a> </li>
             </ul>
         </nav>
 
