@@ -1,0 +1,56 @@
+.collectionForm{
+    margin-bottom: 2vh;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.collectionTable{
+    border: 2px solid black;
+    padding: 0 2vw 2vw 2vw;
+    margin-left: 5%;
+    margin-right: 5%;
+    width: 90%;
+    overflow-y: auto;
+    max-height: 90%;
+    display: block;
+    table-layout: auto;
+}
+
+th{
+    padding: 1vw;
+    width: 25vw;
+    text-align: left;
+}
+
+td{
+    padding: 1vh;
+    width: 25vw;
+}
+
+tr:nth-child(even) {
+    background-color: lightgrey;
+}
+
+.mainContent{
+    margin-top: 5vh;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #ffffff;
+    padding: 2vh;
+    font-size: 1vw;
+    border-radius: 6px;
+    box-shadow: 0px 10px 20px black;
+    border: 2px solid black;
+    width: 75%;
+    height: 75vh;
+}
+
+.buttons {
+    width: 20%;
+    font-size: 1vw;
+}
+
+.inputBox {
+    width: 20%;
+    font-size: 2vh;
+}

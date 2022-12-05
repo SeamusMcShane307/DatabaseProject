@@ -6,8 +6,9 @@
 <html>
 
 <head>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.min.css">
-    <!--<link rel="stylesheet" href="css/styles.css">-->
+    <link rel="stylesheet" href="global.css">
+    <link rel="stylesheet" href="myCollections.css">
+    <link rel="stylesheet" href="cardInfo.css">
     <title>Card Information Page</title>
     <meta charset="utf-8">
     <meta name="viewport" conent="width=device-width, initial-scale=1">
@@ -21,62 +22,69 @@
     </style>
 
     <!-- Use the nav area to ass hyperlink to other pages within the website-->
-    <nav>
-        <ul>
-            <li><a href="Login.php">Logout</a> </li>
-            <li><a href="User.php">My Collections</a> </li>
-            <li><a href="Trading.php">Trade</a> </li>
-        </ul>
+    <nav class="navbar">
+        <a href="Login.html"><button class="navButtons">Logout</button></a>
+        <a href="User.php"><button class="navButtons">My Collections</button></a>
+        <a href="Trading.php"><button class="navButtons">Trade</button></a>
     </nav>
 
-    <main>
-        </div>
-        <p>This is where the database will be</p>
-        <table>
-            <tr>
-                <th>Card Id</th>
-                <th>Card Name</th>
-                <th>Cost</th>
-                <th>Type</th>
-                <th>Description</th>
-                <th>Printings</th>
-                <th>Rarity</th>
-                <th>Loyalty</th>
-            </tr>
-            <?php
-            $card_name = $_GET['Card_Name'];
-            $card_name = str_replace("@", "'", $card_name);
-            if (strpos($card_name, "'") !== FALSE) {
-                $card_name = addslashes($card_name);
-            }
+    <div class="mainContent">
 
-            $conn = mysqli_connect("localhost", "root", "", "card_db");
-            // Check connection
-            if ($conn->connect_error) {
-                die("Connection failed: " . $conn->connect_error);
-            }
-            $sql = "SELECT * FROM cards WHERE Name = '$card_name';";
-            $result = $conn->query($sql);
-            if ($result->num_rows > 0) {
-                // output data of each row
-                while ($row = $result->fetch_assoc()) {
-                    echo "<tr><td>" . $row["ID"] .
-                        "</td><td>" . $row["Name"] .
-                        "</td><td>" . $row["Cost"] .
-                        "</td><td>" . $row["Type"] .
-                        "</td><td>" . $row["Description"] .
-                        "</td><td>" . $row["Printings"] .
-                        "</td><td>" . $row["Rarity"] .
-                        "</td><td>" . $row["Loyalty"] . "</td></tr>";
-                }
-                echo "</table>";
-            } else {
-                echo "0 results";
-            }
-            $conn->close();
-            ?>
-        </table>
-    </main>
+        <?php
+        $card_name = $_GET['Card_Name'];
+        $card_name = str_replace("@", "'", $card_name);
+        if (strpos($card_name, "'") !== FALSE) {
+            $card_name = addslashes($card_name);
+        }
+
+        $conn = mysqli_connect("localhost", "root", "", "card_db");
+        // Check connection
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+        $sql = "SELECT * FROM cards WHERE Name = '$card_name';";
+        $result = $conn->query($sql);
+        if ($result->num_rows > 0) {
+            // output data
+            $row = $result->fetch_assoc();
+            echo "<div class='cardInfoDiv'>
+                            <!--ID-->
+                            <div class='textSections'>" . "Card Name: ". $row['Name'];
+            echo "</div>
+                            <!--Card Name-->
+                            <div class='textSections'>" . "Card ID: ". $row['ID'];
+            echo "</div>
+                            <!--Cost-->
+                            <div class='textSections'>" . "Mana Cost: ". $row['Cost'];
+            echo "</div>
+                            <!--Creature Type-->
+                            <div class='textSections'>" . "Type: ". $row['Type'];
+            echo "</div>
+                            <!--Description-->
+                            <div class='textSections'>" . "Description: <br>". nl2br(nl2br($row['Description']));
+            echo "</div>
+                            <!--Printings-->
+                            <div class='textSections'>" . "Printings: ". $row['Printings'];
+            echo "</div>
+                            <!--Rarity-->
+                            <div class='textSections'>" . "Rarity: ". $row['Rarity'];
+            echo "</div>
+                            <!--Loyalty-->
+                            <div class='textSections'>" . "Loyalty: ";
+                            if($row['Loyalty'] == null){
+                                echo 0;
+                            }
+                            else{
+                                echo $row['Loyalty'];
+                            }
+            echo "</div>
+                        </div>";
+        } else {
+            echo "0 results";
+        }
+        $conn->close();
+        ?>
+    </div>
 </body>
 
 </html>

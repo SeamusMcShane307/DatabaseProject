@@ -31,6 +31,9 @@
     }
     else if(isset($_POST['Name'])){
         $collection_name = $_POST['Name'];
+    if (strpos($collection_name, "'") !== FALSE) {
+        $collection_name = addslashes($collection_name);
+    }
         $conn = mysqli_connect("localhost", "root", "", "card_db");
             
             // Check connection

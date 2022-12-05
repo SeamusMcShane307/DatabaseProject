@@ -1,0 +1,13 @@
+.cardInfoDiv{
+    font-size: 3vh;
+    overflow-y: auto;
+    max-height: 100%;
+    display: block;
+}
+
+.textSections{ 
+    /*
+    border-bottom: 2px solid grey;*/
+    box-shadow: 2px 2px 5px grey;
+    padding: 2vh;
+}

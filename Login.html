@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+
+<!-- This website template was created by: Seamus McShane-->
+
+<html lang=:en">
+<html>
+    <head>
+        <link rel="stylesheet" href="loginStyles.css">
+        <title>Login Page</title> 
+        <meta charset="utf-8">
+        <meta name="viewport" conent="width=device-width, initial-scale=1">
+    </head>
+    <body>
+        <style>
+            body {
+              background-image: url('images/RagavanBackground.jpg');
+            }
+        </style>
+        <div class="loginPanel">
+            <form action="User.php" method="post">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" class="inputBox" autofocus>
+
+                <label for="password">Password:</label>
+                <input type="text" id="password" name="password" class="inputBox">
+                <br>
+                <button class = "buttons">Login</button>
+            </form>
+            <a href='NewAccount.html'><button class = "buttons">Create Account</button></a>
+        </div>
+    </body>
+</html>
